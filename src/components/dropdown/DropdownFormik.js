@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import useClickOutSide from "../../hooks/UseClickOutSide";
 
-const DropdownHook = ({
-  setValue,
+const DropdownFormik = ({
+  labelTitle,
   name,
   data,
   dropDownLabel = "Please your job",
@@ -15,14 +15,14 @@ const DropdownHook = ({
     setLabel(e.target.textContent);
   };
   return (
-    <div className="form_dropdơwn" ref={nodeRef}>
-      <div className="dropdown" onClick={() => setShow(!show)}>
-        <span>{label || "Select your job"}</span>
-      </div>
-      <div className={`dropdown_selected ${show ? "" : "active"}`}>
-        {data &&
-          data.length > 0 &&
-          data.map((item) => {
+    <>
+      <label className="form_group">{labelTitle}</label>
+      <div className="form_dropdơwn" ref={nodeRef}>
+        <div className="dropdown" onClick={() => setShow(!show)}>
+          <span>{label || "Select your job"}</span>
+        </div>
+        <div className={`dropdown_selected ${show ? "" : "active"}`}>
+          {data.map((item) => {
             <div
               className="selected"
               onClick={handleClickDropdownItem}
@@ -32,9 +32,10 @@ const DropdownHook = ({
               {item.text}
             </div>;
           })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default DropdownHook;
+export default DropdownFormik;
